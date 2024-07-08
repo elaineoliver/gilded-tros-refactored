@@ -57,54 +57,26 @@ const day3Items: Item[] = [
     new Item('Ugly Variable Names', 0, 0)
 ]
 
-describe('GildedTrosTest', () => {
-    describe("Day 1 items", () => {
-        const app: GildedTros = new GildedTros(day0Items);
+const allDays: Item[][] = [
+    day0Items,
+    day1Items,
+    day2Items,
+    day3Items
+]
 
+describe("GildedTrosTest", () => {
+    const app: GildedTros = new GildedTros(day0Items);
+
+    const days = 4;
+
+    for (let i = 0; i < days - 1; i++) {
         app.updateQuality();
-
-        test.each(app.items)(`Updated sell in days for "$name, $sellIn" is correct`, (item) => {
-            const newItem = day1Items.find(i => i === item)
-
-            if (newItem) {
-                expect(item.sellIn).toEqual(newItem.sellIn)
-            } else {
-                console.error("No corresponding item found")
-            }
+        const actual = app.items.map(item => item.toString())
+        const expected = allDays[i + 1].map(item => item.toString())
+        actual.forEach((o, j) => {
+            test(`Day ${i + 1} ${o}`, () => {
+                expect(o).toEqual(expected[j])
+            })
         })
-
-        test.each(app.items)(`Updated quality for "$name, $quality" is correct`, (item) => {
-            const newItem = day1Items.find(i => i === item)
-
-            if (newItem) {
-                expect(item.quality).toEqual(newItem.quality)
-            } else {
-                throw new Error(`No corresponding item found for ${JSON.stringify(item)}`)
-            }
-        })
-    })
-
-    // test("Day 2 items have expected values", () => {
-    //     const app: GildedTros = new GildedTros(day1Items);
-
-    //     app.updateQuality();
-
-    //     day2Items.forEach((item, index) => {
-    //         expect(app.items[index].name).toEqual(item.name)
-    //         expect(app.items[index].sellIn).toEqual(item.sellIn)
-    //         expect(app.items[index].quality).toEqual(item.quality)
-    //     })
-    // })
-
-    // test("Day 3 items have expected values", () => {
-    //     const app: GildedTros = new GildedTros(day2Items);
-
-    //     app.updateQuality();
-
-    //     day3Items.forEach((item, index) => {
-    //         expect(app.items[index].name).toEqual(item.name)
-    //         expect(app.items[index].sellIn).toEqual(item.sellIn)
-    //         expect(app.items[index].quality).toEqual(item.quality)
-    //     })
-    // })
-});
+    }
+})
