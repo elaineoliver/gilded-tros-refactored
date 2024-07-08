@@ -1,13 +1,5 @@
 import {Item} from './item';
 
-export interface TUpdatedItem extends Item {
-    name: string
-    sellIn: number // Number of days to sell the item
-    quality: number // How valuable the item is: > 0, <= 50
-    category: string
-    toString: () => string
-}
-
 function controlQuality(quality: number) {
     // The Quality of an item is never negative
     if (quality < 0) {
@@ -20,7 +12,7 @@ function controlQuality(quality: number) {
     }
 }
 
-export function updateStandardItem(item: TUpdatedItem): TUpdatedItem {
+export function updateStandardItem(item: Item): Item {
     const newSellIn = item.sellIn - 1;
 
     const getQuality = () => {
@@ -34,7 +26,7 @@ export function updateStandardItem(item: TUpdatedItem): TUpdatedItem {
     return { ...item, sellIn: newSellIn, quality: newQuality }
 }
 
-export function updateTastyItem(item: TUpdatedItem): TUpdatedItem {
+export function updateTastyItem(item: Item): Item {
     const newSellIn = item.sellIn - 1;
 
     const getQuality = () => {
@@ -48,7 +40,7 @@ export function updateTastyItem(item: TUpdatedItem): TUpdatedItem {
     return { ...item, sellIn: newSellIn, quality: newQuality }
 }
 
-export function updateLegendaryItem(item: TUpdatedItem): TUpdatedItem {
+export function updateLegendaryItem(item: Item): Item {
     // "B-DAWG Keychain", being a legendary item, never has to be sold or decreases in Quality
     const newSellIn = item.sellIn;
     const newQuality = 80
@@ -56,7 +48,7 @@ export function updateLegendaryItem(item: TUpdatedItem): TUpdatedItem {
     return { ...item, sellIn: newSellIn, quality: newQuality }
 }
 
-export function updateCovettedItem(item: TUpdatedItem): TUpdatedItem {
+export function updateCovettedItem(item: Item): Item {
 	// - "Backstage passes" for very interesting conferences increases in Quality as its SellIn value approaches
     const newSellIn = item.sellIn - 1;
     
@@ -88,7 +80,7 @@ export function updateCovettedItem(item: TUpdatedItem): TUpdatedItem {
     }
 }
 
-export function updateSmellyItem(item: TUpdatedItem): TUpdatedItem {
+export function updateSmellyItem(item: Item): Item {
     const newSellIn = item.sellIn - 1;
     
     // - Smelly items degrade in Quality twice as fast as normal items
@@ -104,7 +96,7 @@ export function updateSmellyItem(item: TUpdatedItem): TUpdatedItem {
 
 // export function reduceCategories(
 //     currentData: Item,
-//     newData: TUpdatedItem
+//     newData: Item
 //   ) {
 //     const { name, sellIn, quality } = currentData
 
@@ -128,7 +120,7 @@ export function updateSmellyItem(item: TUpdatedItem): TUpdatedItem {
 //     }
 //   }
 
-//   export const itemsWithCategories: (item: Item) => TUpdatedItem = (item: Item) => reduceCategories(item, {
+//   export const itemsWithCategories: (item: Item) => Item = (item: Item) => reduceCategories(item, {
 //       name: item.name,
 //       sellIn: 0,
 //       quality: 0,
