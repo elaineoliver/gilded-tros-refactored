@@ -1,5 +1,5 @@
 import {Item} from '../src/item';
-import {GildedTros, itemsWithCategories, TUpdatedItem} from '../src/gilded-tros';
+import {GildedTros} from '../src/gilded-tros';
 
 console.log('AXXES CODE KATA - GILDED TROS');
 
@@ -28,12 +28,8 @@ if (args.length > 0) {
 
 for (let i = 0; i < days; i++) {
     console.log('-------- day ' + i + ' --------');
-    console.log('name, sellIn, quality, category');
-    // items.map(item => item.toString()).forEach(item => console.log(item));
-    for(let i = 0; i <= items.length - 1; i++) {
-        const newItem: TUpdatedItem = itemsWithCategories(items[i])
-        console.log(`${newItem.name}, ${newItem.sellIn}, ${newItem.quality}, ${newItem.category}`)
-    }
+    console.log('name, sellIn, quality');
+    items.map(item => item.toString()).forEach(item => console.log(item));
     console.log();
     app.updateQuality();
 }
