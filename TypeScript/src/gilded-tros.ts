@@ -1,62 +1,5 @@
 import {Item} from './item';
 
-export interface TUpdatedItem extends Item {
-    name: string
-    sellIn: number // Number of days we have to sell the item
-    quality: number // How valuable the item is: > 0, <= 50
-    category: string
-    toString: () => string
-}
-
-export function reduceCategories(
-    currentData: Item,
-    newData: TUpdatedItem
-  ) {
-    const { name, sellIn, quality } = currentData
-
-    switch(newData.name) {
-        case "Good Wine":
-            return { 
-                name, sellIn, quality, category: "tasty"
-            }
-        case "B-DAWG Keychain":
-            return { 
-                name, sellIn, quality: 80, category: "legendary"
-            }
-        case "Backstage passes for Re:Factor":       
-            return {
-                name, sellIn, quality, category: "covetted"
-            }
-        case "Backstage passes for HAXX":       
-            return {
-                name, sellIn, quality, category: "covetted"
-            }
-        case "Duplicate Code":       
-            return {
-                name, sellIn, quality, category: "smelly"
-            }
-        case "Long Methods":       
-            return {
-                name, sellIn, quality, category: "smelly"
-            }
-        case "Ugly Variable Names":       
-            return {
-                name, sellIn, quality, category: "smelly"
-            }
-        default: 
-            return {
-                name, sellIn, quality, category: "standard"
-            }
-    }
-  }
-
-  export const itemsWithCategories: (item: Item) => TUpdatedItem = (item: Item) => reduceCategories(item, {
-      name: item.name,
-      sellIn: 0,
-      quality: 0,
-      category: "standard"
-  })
-
 export class GildedTros {
 
     constructor(public items: Array<Item>) {
@@ -65,7 +8,7 @@ export class GildedTros {
 
 
     public updateQuality(): void {
-        this.items.reduce(itemsWithCategories)
+        // this.items.reduce(itemsWithCategories)
 
         // for (let i = 0; i < this.items.length; i++) {
         //     if (this.items[i].name != 'Good Wine' && this.items[i].name != 'Backstage passes for Re:Factor'
