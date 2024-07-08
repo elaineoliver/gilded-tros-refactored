@@ -79,7 +79,7 @@ describe('GildedTrosTest', () => {
             if (newItem) {
                 expect(item.quality).toEqual(newItem.quality)
             } else {
-                console.error("No corresponding item found")
+                throw new Error(`No corresponding item found for ${JSON.stringify(item)}`)
             }
         })
     })
