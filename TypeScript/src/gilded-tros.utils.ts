@@ -42,10 +42,7 @@ export function updateTastyItem(item: Item): Item {
 
 export function updateLegendaryItem(item: Item): Item {
     // "B-DAWG Keychain", being a legendary item, never has to be sold or decreases in Quality
-    const newSellIn = item.sellIn;
-    const newQuality = 80
-
-    return { ...item, sellIn: newSellIn, quality: newQuality }
+    return { ...item, quality: 80 }
 }
 
 export function updateCovettedItem(item: Item): Item {
