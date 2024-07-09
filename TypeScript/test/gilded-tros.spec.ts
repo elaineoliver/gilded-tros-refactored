@@ -120,9 +120,9 @@ describe("GildedTrosTest - updateQuality", () => {
         const actual = app.items.map(item => item.toString())
         const expected = allDays[i + 1].map(item => item.toString())
 
-        actual.forEach((o, j) => {
-            test(`Day ${i + 1} ${o}`, () => {
-                expect(o).toEqual(expected[j])
+        actual.forEach((ac, j) => {
+            test(`Day ${i + 1} ${ac}`, () => {
+                expect(ac).toEqual(expected[j])
             })
         })
     }

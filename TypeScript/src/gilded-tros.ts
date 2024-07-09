@@ -7,36 +7,32 @@ export class GildedTros {
     }
 
     private updateItem(item: Item) {
-        let updatedItem: Item
-
         switch(item.name) {
             case "Good Wine":
-                updatedItem = updateTastyItem(item)
-                break;
-            case "B-DAWG Keychain":
-                updatedItem = updateLegendaryItem(item)
-                break;
-            case "Backstage passes for Re:Factor":       
-                updatedItem = updateCovettedItem(item)
-                break;
-            case "Backstage passes for HAXX":       
-                updatedItem = updateCovettedItem(item)
-                break;
-            case "Duplicate Code":       
-                updatedItem = updateSmellyItem(item)
-                break;
-            case "Long Methods":       
-                updatedItem = updateSmellyItem(item)
-                break;
-            case "Ugly Variable Names":       
-                updatedItem = updateSmellyItem(item)
-                break;
-            default: 
-                updatedItem = updateStandardItem(item)
-                break;
-        }
+                return updateTastyItem(item)
 
-        return updatedItem
+            case "B-DAWG Keychain":
+                return updateLegendaryItem(item)
+
+            case "Backstage passes for Re:Factor":       
+                return updateCovettedItem(item)
+
+            case "Backstage passes for HAXX":       
+                return updateCovettedItem(item)
+
+            case "Duplicate Code":       
+                return updateSmellyItem(item)
+
+            case "Long Methods":       
+                return updateSmellyItem(item)
+
+            case "Ugly Variable Names":       
+                return updateSmellyItem(item)
+
+            default: 
+                return updateStandardItem(item)
+
+        }
     }
 
     public updateQuality(): void {
