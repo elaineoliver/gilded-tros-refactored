@@ -44,7 +44,7 @@ const day2Items: Item[] = [
 ]
 
 const day3Items: Item[] = [
-    new Item('Ring of Cleansening Code', 8, 18),
+    new Item('Ring of Cleansening Code', 7, 17),
     new Item('Good Wine', -1, 4),
     new Item('Elixir of the SOLID', 2, 4),
     new Item('B-DAWG Keychain', 0, 80),
@@ -57,22 +57,69 @@ const day3Items: Item[] = [
     new Item('Ugly Variable Names', 0, 0)
 ]
 
+const day4Items: Item[] = [
+    new Item('Ring of Cleansening Code', 6, 16),
+    new Item('Good Wine', -2, 8),
+    new Item('Elixir of the SOLID', 1, 3),
+    new Item('B-DAWG Keychain', 0, 80),
+    new Item('B-DAWG Keychain', -1, 80),
+    new Item('Backstage passes for Re:Factor', 11, 24),
+    new Item('Backstage passes for Re:Factor', 6, 50),
+    new Item('Backstage passes for HAXX', 1, 50),
+    new Item('Duplicate Code', -1, 0),
+    new Item('Long Methods', -1, 0),
+    new Item('Ugly Variable Names', -1, 0)
+]
+
+const day5Items: Item[] = [
+    new Item('Ring of Cleansening Code', 5, 15),
+    new Item('Good Wine', -3, 16),
+    new Item('Elixir of the SOLID', 0, 2),
+    new Item('B-DAWG Keychain', 0, 80),
+    new Item('B-DAWG Keychain', -1, 80),
+    new Item('Backstage passes for Re:Factor', 10, 26),
+    new Item('Backstage passes for Re:Factor', 5, 50),
+    new Item('Backstage passes for HAXX', 0, 50),
+    new Item('Duplicate Code', -2, 0),
+    new Item('Long Methods', -2, 0),
+    new Item('Ugly Variable Names', -2, 0)
+]
+
+const day6Items: Item[] = [
+    new Item('Ring of Cleansening Code', 4, 14),
+    new Item('Good Wine', -4, 32),
+    new Item('Elixir of the SOLID', -1, 0),
+    new Item('B-DAWG Keychain', 0, 80),
+    new Item('B-DAWG Keychain', -1, 80),
+    new Item('Backstage passes for Re:Factor', 9, 28),
+    new Item('Backstage passes for Re:Factor', 4, 50),
+    new Item('Backstage passes for HAXX', -1, 0),
+    new Item('Duplicate Code', -3, 0),
+    new Item('Long Methods', -3, 0),
+    new Item('Ugly Variable Names', -3, 0)
+]
+
 const allDays: Item[][] = [
     day0Items,
     day1Items,
     day2Items,
-    day3Items
+    day3Items,
+    day4Items,
+    day5Items,
+    day6Items
 ]
 
 describe("GildedTrosTest", () => {
     const app: GildedTros = new GildedTros(day0Items);
 
-    const days = 4;
+    const updatableDays = allDays.length - 1;
 
-    for (let i = 0; i < days - 1; i++) {
+    for (let i = 0; i < updatableDays; i++) {
         app.updateQuality();
+
         const actual = app.items.map(item => item.toString())
         const expected = allDays[i + 1].map(item => item.toString())
+
         actual.forEach((o, j) => {
             test(`Day ${i + 1} ${o}`, () => {
                 expect(o).toEqual(expected[j])
