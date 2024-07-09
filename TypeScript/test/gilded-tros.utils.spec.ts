@@ -166,7 +166,6 @@ describe("updateSmellyItem", () => {
         quality: 42
     }
     
-    
     test("Sell in days decreases by one", () => {
         const updated = updateSmellyItem(baseItem)
         expect(updated.sellIn).toBe(49)
