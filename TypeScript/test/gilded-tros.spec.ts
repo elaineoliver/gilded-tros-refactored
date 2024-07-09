@@ -109,7 +109,7 @@ const allDays: Item[][] = [
     day6Items
 ]
 
-describe("GildedTrosTest", () => {
+describe("GildedTrosTest - updateQuality", () => {
     const app: GildedTros = new GildedTros(day0Items);
 
     const updatableDays = allDays.length - 1;
