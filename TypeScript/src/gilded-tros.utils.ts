@@ -1,6 +1,6 @@
 import {Item} from './item';
 
-function controlQuality(quality: number) {
+export function controlQuality(quality: number) {
     // The Quality of an item is never negative
     if (quality < 0) {
         return 0
@@ -31,7 +31,7 @@ export function updateTastyItem(item: Item): Item {
 
     const getQuality = () => {
         // "Good Wine" actually increases in Quality the older it gets
-        const q = item.quality + 1
+        const q = item.quality > 0 ? item.quality * 2 : 1;
         return controlQuality(q)
     }
     
@@ -90,38 +90,3 @@ export function updateSmellyItem(item: Item): Item {
 
     return { ...item, sellIn: newSellIn, quality: newQuality }
 }
-
-// export function reduceCategories(
-//     currentData: Item,
-//     newData: Item
-//   ) {
-//     const { name, sellIn, quality } = currentData
-
-//     switch(newData.name) {
-//         case "Good Wine":
-//             return {...currentData, category: "tasty"}
-//         case "B-DAWG Keychain":
-//             return {...currentData, category: "legendary"}
-//         case "Backstage passes for Re:Factor":       
-//             return {...currentData, category: "covetted"}
-//         case "Backstage passes for HAXX":       
-//             return {...currentData, category: "covetted"}
-//         case "Duplicate Code":       
-//             return {...currentData, category: "smelly"}
-//         case "Long Methods":       
-//             return {...currentData, category: "smelly"}
-//         case "Ugly Variable Names":       
-//             return {...currentData, category: "smelly"}
-//         default: 
-//             return {...currentData, category: "standard"}
-//     }
-//   }
-
-//   export const itemsWithCategories: (item: Item) => Item = (item: Item) => reduceCategories(item, {
-//       name: item.name,
-//       sellIn: 0,
-//       quality: 0,
-//       category: "standard",
-//       toString: () => `${this.category}, ${newData.name}, ${newData.sellIn}, ${newData.quality}`
-
-//   })
