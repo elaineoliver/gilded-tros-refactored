@@ -24,9 +24,9 @@ const day1Items: Item[] = [
     new Item('Backstage passes for Re:Factor', 14, 21),
     new Item('Backstage passes for Re:Factor', 9, 50),
     new Item('Backstage passes for HAXX', 4, 50),
-    new Item('Duplicate Code', 2, 4),
-    new Item('Long Methods', 2, 4),
-    new Item('Ugly Variable Names', 2, 4)
+    new Item('Duplicate Code', 2, 3),
+    new Item('Long Methods', 2, 3),
+    new Item('Ugly Variable Names', 2, 3)
 ]
 
 const day2Items: Item[] = [
@@ -38,9 +38,9 @@ const day2Items: Item[] = [
     new Item('Backstage passes for Re:Factor', 13, 22),
     new Item('Backstage passes for Re:Factor', 8, 50),
     new Item('Backstage passes for HAXX', 3, 50),
-    new Item('Duplicate Code', 1, 2),
-    new Item('Long Methods', 1, 2),
-    new Item('Ugly Variable Names', 1, 2)
+    new Item('Duplicate Code', 1, 0),
+    new Item('Long Methods', 1, 0),
+    new Item('Ugly Variable Names', 1, 0)
 ]
 
 const day3Items: Item[] = [

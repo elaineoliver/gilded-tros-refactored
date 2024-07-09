@@ -4,7 +4,7 @@ export function controlQuality(quality: number) {
     // The Quality of an item is never negative
     if (quality < 0) {
         return 0
-    // The Quality of an item is never more than 50
+    // The Quality of an item is never more than 50, except for legendary items which shouldn't use this function
     } else if (quality > 50) {
         return 50
     } else {
@@ -12,12 +12,21 @@ export function controlQuality(quality: number) {
     }
 }
 
+export function getTwiceAsFast(speed: number) {
+    // Twice as fast = speed + (speed * 2).
+    // So if speed is one, then twice as fast is 1 + (1 * 2) = 3
+    // And if speed is three, then twice as fast is 3 + (3 * 2) = 9!
+    const absoluteSpeed = Math.abs(speed)
+    return absoluteSpeed + (absoluteSpeed * 2)
+}
+
 export function updateStandardItem(item: Item): Item {
     const newSellIn = item.sellIn - 1;
 
     const getQuality = () => {
         // Once the sell by date has passed, Quality degrades twice as fast
-        const q = newSellIn < 0 ? item.quality - 2 : item.quality - 1
+        const speed2x = getTwiceAsFast(1)
+        const q = newSellIn < 0 ? item.quality - speed2x : item.quality - 1
         return controlQuality(q)
     }
 
@@ -46,7 +55,7 @@ export function updateLegendaryItem(item: Item): Item {
 }
 
 export function updateCovettedItem(item: Item): Item {
-	// - "Backstage passes" for very interesting conferences increases in Quality as its SellIn value approaches
+	// "Backstage passes" for very interesting conferences increases in Quality as its SellIn value approaches
     const newSellIn = item.sellIn - 1;
     
     const getQuality = () => {
@@ -80,9 +89,12 @@ export function updateCovettedItem(item: Item): Item {
 export function updateSmellyItem(item: Item): Item {
     const newSellIn = item.sellIn - 1;
     
-    // - Smelly items degrade in Quality twice as fast as normal items
     const getQuality = () => {
-        const q = newSellIn < 0 ? item.quality - 4 : item.quality - 2
+        // Smelly items degrade in Quality twice as fast as normal items
+        // Once the sell by date has passed, Quality degrades twice as fast
+        const speed2x = getTwiceAsFast(1)
+        const speed4x = getTwiceAsFast(speed2x)
+        const q = newSellIn < 0 ? item.quality - speed4x : item.quality - speed2x
         return controlQuality(q)
     }
 

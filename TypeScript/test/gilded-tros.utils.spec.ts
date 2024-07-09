@@ -1,4 +1,4 @@
-import { controlQuality, updateCovettedItem, updateLegendaryItem, updateSmellyItem, updateStandardItem, updateTastyItem } from '../src/gilded-tros.utils';
+import { controlQuality, getTwiceAsFast, updateCovettedItem, updateLegendaryItem, updateSmellyItem, updateStandardItem, updateTastyItem } from '../src/gilded-tros.utils';
 import { Item } from '../src/item';
 
 describe("controlQuality", () => {
@@ -13,26 +13,55 @@ describe("controlQuality", () => {
     })
 
     test("Quality greater than 0 and less than or equal to 50 remains the same", () => {
-        const controlled = controlQuality(58)
-        expect(controlled).toEqual(50)
+        const controlled = controlQuality(36)
+        expect(controlled).toEqual(36)
+    })
+})
+
+describe("getTwiceAsFast", () => {
+    test("Doesn't fail if speed is 0 or negative", () => {
+        const twiceAsFast0 = getTwiceAsFast(0)
+        expect(twiceAsFast0).toEqual(0)
+
+        const twiceAsFastMin1 = getTwiceAsFast(-2)
+        expect(twiceAsFastMin1).toEqual(6)
+    })
+
+    test("Returns 3 if speed is 1", () => {
+        const twiceAsFastMin = getTwiceAsFast(1)
+        expect(twiceAsFastMin).toEqual(3)
+    })
+
+    test("Returns 9 if speed is 3", () => {
+        const twiceAsFastMin = getTwiceAsFast(1)
+        expect(twiceAsFastMin).toEqual(3)
     })
 })
 
 describe("updateStandardItem", () => {
-    const item: Item = {
+    const baseItem: Item = {
         name: "TestMe",
         sellIn: 5,
         quality: 5
     }
 
-    const updated = updateStandardItem(item)
-
+    
     test("Sell in days decreases by one", () => {
+        const updated = updateStandardItem(baseItem)
         expect(updated.sellIn).toBe(4)
     })
 
-    test("Quality decreases by one", () => {
+    test("Quality decreases by one before sell by date", () => {
+        const updated = updateStandardItem(baseItem)
         expect(updated.quality).toBe(4)
+    })
+
+    test("Quality decreases twice as fast after sell by date", () => {
+        const updated = updateStandardItem({
+            ...baseItem,
+            sellIn: -1
+        })
+        expect(updated.quality).toBe(2)
     })
 })
 
@@ -130,18 +159,30 @@ describe("updateCovettedItem", () => {
     })
 })
 
-describe("updateSmellyItem", () => {    
-    const updated = updateSmellyItem({
+describe("updateSmellyItem", () => {
+    const baseItem = {
         name: "TestMe",
         sellIn: 50,
         quality: 42
-    })
-
+    }
+    
+    
     test("Sell in days decreases by one", () => {
+        const updated = updateSmellyItem(baseItem)
         expect(updated.sellIn).toBe(49)
     })
 
-    test("Quality decreases by 2", () => {
-        expect(updated.quality).toBe(40)
+    test("Quality decreases twice as fast as normal items before sell by date", () => {
+        const updated = updateSmellyItem(baseItem)
+        expect(updated.quality).toBe(39)
+    })
+
+    test("Quality decreases twice as fast after sell by date", () => {
+        const updated = updateSmellyItem({
+            ...baseItem,
+            sellIn: -1
+        })
+        expect(updated.quality).toBe(33)
     })
 })
+
