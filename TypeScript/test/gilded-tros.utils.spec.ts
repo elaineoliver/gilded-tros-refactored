@@ -33,8 +33,8 @@ describe("getTwiceAsFast", () => {
     })
 
     test("Returns 9 if speed is 3", () => {
-        const twiceAsFastMin = getTwiceAsFast(1)
-        expect(twiceAsFastMin).toEqual(3)
+        const twiceAsFastMin = getTwiceAsFast(3)
+        expect(twiceAsFastMin).toEqual(9)
     })
 })
 
